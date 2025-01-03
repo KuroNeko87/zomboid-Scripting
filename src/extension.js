@@ -19,9 +19,26 @@ function activate(context) {
         const blockStack = []; // Stack to track `{` and `}`
         let currentBlockType = null; // Tracks "inputs" or "outputs"
         let inInputsOrOutputs = false; // Determines if inside `inputs` or `outputs` block
+        let inCommentBlock = false; // n: tracks wheter we are inside a comment block
 
         lines.forEach((line, lineIndex) => {
             const trimmedLine = line.trim();
+            
+            //n: check for the start and end of block comments
+            if (trimmedLine.startsWith("/*")) {
+                inCommentBlock = true;
+            }
+            if (inCommentBlock) {
+                if (trimmedLine.endsWith("*/")) {
+                    inCommentBlock = false;
+                }
+                return; // n: skip if this line is inside a comment block
+            }
+
+            // n: single-line comments
+            if (trimmedLine.startsWith("//")) {
+                return;
+            }
 
             // Check for block openings and closings
             if (trimmedLine.endsWith("{")) {
