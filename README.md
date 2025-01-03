@@ -21,6 +21,9 @@
 - **Support for Custom Tags**
   - Allows for easy integration of user-defined tags and elements.
 
+## Examples
+![Example of the extension in action](https://imgur.com/a/J88YbZH)
+
 ## Installation
 
 ### **1. Download the Extension**
