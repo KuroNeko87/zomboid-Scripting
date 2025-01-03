@@ -8,13 +8,31 @@
             "include": "#booleans"
         },
         {
-            "include": "#tags"
+            "include": "#recipetags"
         },
         {
             "include": "#skills"
         },
         {
             "include": "#timedActions"
+        },
+        {
+            "include": "#scripttypes"
+        },
+        {
+            "include": "#itemtags"
+        },
+        {
+            "include": "#itemflags"
+        },
+        {
+            "include": "#itemmodifiers"
+        },
+        {
+            "include": "#itemmodes"
+        },
+        {
+            "include": "#inputtypes"
         },
         {
             "include": "#operators"
@@ -25,7 +43,7 @@
             "patterns": [
                 {
                     "name": "keyword.control.parameter.zomboid",
-                    "match": "\\b(module|imports|timedAction|time|needToBeLearn|craftRecipe|autoLearn|SkillRequired|Tags|category|xpAward|inputs|outputs|AllowBatchCraft|OnCreate)\\b"
+                    "match": "\\b(module|imports|timedAction|itemMapper|CanWalk|OnTest|time|needToBeLearn|autoLearn|SkillRequired|Tags|category|xpAward|inputs|outputs|AllowBatchCraft|OnCreate|OnStart|OnUpdate|OnFailed)\\b"
                 }
             ]
         },
@@ -33,11 +51,11 @@
             "patterns": [
                 {
                     "name": "constant.language.boolean.zomboid",
-                    "match": "\\b(true|false)\\b"
+                    "match": "\\b(true|false|default)\\b"
                 }
             ]
         },
-        "recipe-tags": {
+        "recipetags": {
             "patterns": [
                 {
                     "name": "keyword.control.recipetag.zomboid",
@@ -61,15 +79,15 @@
                 }
             ]
         },
-        "script-types": {
+        "scripttypes": {
             "patterns": [
                 {
                     "name": "entity.name.function.scripttype.zomboid",
-                    "match": "\\b(animationmesh|craftrecipe|energydefinition|entity|entitycomponent|entitytemplate|evolvedrecipe|fixing|fluiddefinition|fluidfilter|item|itemconfig|itemfilter|mannequin|model|physicsshape|ragdoll|recipe|runtimeanimation|sound|soundtimeline|spritemodel|stringlist|timedaction|uniquerecipe|vehicle|vehicleenginerpm|vehicletemplate|xuicolor|xuiconfig|xuidefaultstyle|xuilayout|xuiskin|xuistyle)\\b"
+                    "match": "\\b(animationmesh|craftRecipe|energydefinition|entity|entitycomponent|entitytemplate|evolvedrecipe|fixing|fluiddefinition|fluidfilter|item|itemconfig|itemfilter|mannequin|model|physicsshape|ragdoll|recipe|runtimeanimation|sound|soundtimeline|spritemodel|stringlist|timedaction|uniquerecipe|vehicle|vehicleenginerpm|vehicletemplate|xuicolor|xuiconfig|xuidefaultstyle|xuilayout|xuiskin|xuistyle)\\b"
                 }
             ]
         },
-        "item-tags": {
+        "itemtags": {
             "patterns": [
                 {
                     "name": "entity.name.function.itemtag.zomboid",
@@ -77,7 +95,7 @@
                 }
             ]
         },
-        "item-flags": {
+        "itemflags": {
             "patterns": [
                 {
                     "name": "entity.name.function.itemflag.zomboid",
@@ -85,7 +103,7 @@
                 }
             ]
         },
-        "item-modifiers": {
+        "itemmodifiers": {
             "patterns": [
                 {
                     "name": "entity.name.function.itemmodifier.zomboid",
@@ -93,7 +111,7 @@
                 }
             ]
         },
-        "item-modes": {
+        "itemmodes": {
             "patterns": [
                 {
                     "name": "entity.name.function.itemmode.zomboid",
@@ -101,7 +119,7 @@
                 }
             ]
         },
-        "input-types": {
+        "inputtypes": {
             "patterns": [
                 {
                     "name": "entity.name.function.inputtype.zomboid",
