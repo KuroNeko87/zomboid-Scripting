@@ -1,0 +1,121 @@
+{
+    "scopeName": "source.zomboid",
+    "patterns": [
+        {
+            "include": "#parameters"
+        },
+        {
+            "include": "#booleans"
+        },
+        {
+            "include": "#tags"
+        },
+        {
+            "include": "#skills"
+        },
+        {
+            "include": "#timedActions"
+        },
+        {
+            "include": "#operators"
+        }
+    ],
+    "repository": {
+        "parameters": {
+            "patterns": [
+                {
+                    "name": "keyword.control.parameter.zomboid",
+                    "match": "\\b(module|imports|timedAction|time|needToBeLearn|craftRecipe|autoLearn|SkillRequired|Tags|category|xpAward|inputs|outputs|AllowBatchCraft|OnCreate)\\b"
+                }
+            ]
+        },
+        "booleans": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.zomboid",
+                    "match": "\\b(true|false)\\b"
+                }
+            ]
+        },
+        "recipe-tags": {
+            "patterns": [
+                {
+                    "name": "keyword.control.recipetag.zomboid",
+                    "match": "\\b(InHandCraft|PotteryWheel|RemoveFlesh|Stone_Mill|DryingRackGrain|Grinding_Slab|RemoveFur|ChurnBucket|DryingRackHerb|Weaving|Stone_Quern|DryLeatherLarge|DryLeatherMedium|DryLeatherSmall|TanLeather|KilnSmall|KilnLarge|SmeltingFurnace|WoodCharcoal|DomeKiln|CoalPit|BlastFurnace|StoneAnvil|StandingDrillPress|PrimitiveFurnace|KeyDuplicator|PrimitiveForge|CanBeDoneInDark|HandPress|Forge|AdvancedForge|AnySurfaceCraft|RightClickOnly|Engineer|SpinningWheel|Trapper|Survivalist|Carpentry|Electrical|Pottery|Cooking|Packing|Welding|Health|Smithing|Glassmaking|Grindstone|Fishing|Farming|Rippling|Scutching|FuelCharcoal)\\b"
+                }
+            ]
+        },
+        "skills": {
+            "patterns": [
+                {
+                    "name": "keyword.control.skill.zomboid",
+                    "match": "\\b(Aiming|Axe|Blacksmith|Blunt|Butchering|Carving|Cooking|Doctor|Electricity|Farming|Fishing|Fitness|FlintKnapping|Husbandry|Lightfoot|LongBlade|Maintenance|Masonry|Mechanics|MetalWelding|Nimble|PlantScavenging|Pottery|Reloading|SmallBlade|SmallBlunt|Sneak|Spear|Sprinting|Strength|Tailoring|Tracking|Trapping|Woodwork)\\b"
+                }
+            ]
+        },
+        "timedActions": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.timedAction.zomboid",
+                    "match": "\\b(ApplyAlcohol|ApplyGlaze|Craft_Glassmaking|Craft_PotteryBench|Craft_PotteryWheel|CrushLimestone|CutWire|Dismantle|DrawCard|EmptyBag|EmptyPan|Knitting|Making|MixingBucket|OpenChampagne|Paint|RipClothing|CutClothing|RollDice|RollDiceDouble|RollTwoDice|SawLogs|SawOffShotgun|Sew|SmashBottle|Welding|MixingBowl|SliceBread_Surface|SliceFood|SliceFood_Surface|OpenTinCan|OpenTinCanWithKnife|MixingMortarPestle|SharpenStake|SliceMeat|SliceMeat_Surface|UncorkBottle|MakingElectrical|DismantleElectrical|CraftKnifeSpear|OpenPopCan|ChoppingBlock_Hammer|SmithingHammer|SawSmallItemMetal|MakingJewellery|CraftWeapon1H|CraftWeapon2H|CraftArmourPiece|MakingHammer_Surface|Making_Surface|Welding_Surface|ScrubClothWithSoap|Chisel_Surface|SharpenBlade|UseHandPress|UseGrindingStone|PutSeedsInPacket|TanLeatherBarrel|OpenAmmoBox|OpenShellsBox|PlaceAmmoInBox|PackingBox|UnPackBox|PackingBox_Small|UnPackBox_Small|SewingCloth|UnPackSack|PutInBag|UnPackSmallBag|PutInSmallBag|OpenBeerBottle|UseBandsaw|UseGrindingSlab|UseLathe|UseStandingDrill|UseStoneQuern|UseSpinningWheel|BuildBarbedWireFence|BuildCairn|BuildLowHammer|BuildLowMetal|BuildLowNoTool|BuildMetalStructureMedium|BuildMetalStructureScrap|BuildMetalStructureSmall|BuildPoleFence|BuildPoleFenceSmall|BuildSandbagWall|BuildWallHammer|BuildWallMetal|BuildWallNoTool|BuildWireFence|BuildWoodenStructureMedium|BuildWoodenStructureSmall|Threshing|UseLoom)\\b"
+                }
+            ]
+        },
+        "script-types": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.scripttype.zomboid",
+                    "match": "\\b(animationmesh|craftrecipe|energydefinition|entity|entitycomponent|entitytemplate|evolvedrecipe|fixing|fluiddefinition|fluidfilter|item|itemconfig|itemfilter|mannequin|model|physicsshape|ragdoll|recipe|runtimeanimation|sound|soundtimeline|spritemodel|stringlist|timedaction|uniquerecipe|vehicle|vehicleenginerpm|vehicletemplate|xuicolor|xuiconfig|xuidefaultstyle|xuilayout|xuiskin|xuistyle)\\b"
+                }
+            ]
+        },
+        "item-tags": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.itemtag.zomboid",
+                    "match": "\\b(Write|RipClothingCotton|DigWorms|noRope|RipClothingLeather|RipClothingDenim|HazmatSuit|LeatherCrudeLarge|LeatherCrudeWetLarge|LeatherCrudeTannedLarge|LeatherCrudeMedium|LeatherCrudeWetMedium|LeatherCrudeTannedMedium|LeatherCrudeSmall|LeatherCrudeWetSmall|LeatherCrudeTannedSmall|LeatherFullLarge|LeatherFurLarge|LeatherFurWetLarge|LeatherFurTannedLarge|DullKnife|SteelMaterial|MetalPiece|Chunk|IronMaterial|Ingot|CrudeTongs|WoodHandle|IronOre|IronSource|CopperOre|CopperSource|WorkableSteel|SharpKnife|MixingUtensil|Fork|BlowerFan|ToolHead|Crude|CrudeChisel|FullBlade|Blade|CarpentryChisel|LargeBlade|SpearHead|CutPlant|ButcherAnimal|BottleOpener|Awl|Scissors|Screwdriver|Spoon|CanOpener|StoneMaul|ChopTree|Sledgehammer|Firearm|Ammo|BoltCutters|Crowbar|FishingRod|DigPlow|TakeDung|CleanStains|DigGrave|ClearAshes|HasToolHead|Sharpenable|ClubHammer|Stone|IsFireFuel|Wrench|AlreadyBroken|RollingPin|SheetMetalSnips|Mallet|Hammer|LugWrench|Scythe|HandScythe|Bucket|Cookable|HasMetal|CookableMicrowave|CarKey|WholeTire|Brake|CarBattery|Glass|IsFireTinder|DrillWood|DrillMetal|DrillWoodPoor|HeadingTool|Pliers|MetalworkingPliers|RemoveBullet|RemoveGlass|SiphonGas|File|SmallFiles|SmeltableIronSmall|SmallPunch|SmallSaw|SawBlade|Tongs|ViseGrips|Whetstone|MiscElectronic|KnappingTool|Magnifier|TentBed|CleanStains|Pillow|NormalPillow|Rope|Binding|KnittingNeedles|SewingNeedle|StartFire|Limestone|Smokable|Lock|Bowl|MortarPestle|CoffeeMaker|Camera|IsMemento|Paintbrush|HeavyItem|FlintPiece|Eraser|Tape|FishingLine|Aluminum|GasmaskFilter|Consumable|RespiratorFilter|MuffleSneeze|Thimble|SmeltableIronMedium|Pills|Comfrey|Plantain|Magazine|Newspaper|Hardcover|HollowBook|Softcover|Picturebook|Flashlight|GlassBottle|TinCan|EmptyCan|Petrol|Compost|Fertilizer|isSeed|HerbalTea|BakingFat|Oil|Vinegar|isCutting|Salt|GoodFrozen|Toastable|DriedFood|Vermin|WildGarlic|FishMeat|UncutFish|Grilled|FitsToaster|Egg|Pasta|Cheese|Charcoal|Dice|Harmonica|Whistle|Corkscrew|Epoxy|Wire|FiberglassTape|Wallpaper|FishingHook|Saw|Glue|PurifyWater|Aerosol|Puppers|FarmingLoot|AnimalHead|AnimalSkull|Feather|BirdSkull|isCompostable|AnimalBone|SmallAnimalBone|Sugar|DoHairdo|Razor)\\b"
+                }
+            ]
+        },
+        "item-flags": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.itemflag.zomboid",
+                    "match": "\\b(AllowDestroyedItem|AllowFavorite|AllowFrozenItem|AllowRottenItem|AutomationOnly|CopyClothing|DontPutBack|DontReplace|FakeOutput|HandcraftOnly|InheritAmmunition|InheritColor|InheritCondition|InheritFavorite|InheritFoodAge|InheritHeadCondition|InheritSharpness|InheritUses|IsCookedFoodItem|IsDamaged|IsEmpty|IsEmptyContainer|IsFull|IsHeadPart|IsNotDull|IsNotWorn|IsSharpenable|IsUncookedFoodItem|IsUndamaged|IsWholeFoodItem|IsWorn|ItemIsEnergy|ItemIsFluid|ItemIsUses|MayDegrade|MayDegradeHeavy|MayDegradeLight|NoBrokenItems|NotEmpty|NotFull|Prop1|Prop2|SharpnessCheck|ToolLeft|ToolRight)\\b"
+                }
+            ]
+        },
+        "item-modifiers": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.itemmodifier.zomboid",
+                    "match": "\\b(tags|mode|flags)\\b"
+                }
+            ]
+        },
+        "item-modes": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.itemmode.zomboid",
+                    "match": "\\b(keep|destroy|count|use)\\b"
+                }
+            ]
+        },
+        "input-types": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.inputtype.zomboid",
+                    "match": "\\b(energy|item|fluid)\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "punctuation.separator.zomboid",
+                    "match": "[=:\\[\\]\\{\\},]"
+                }
+            ]
+        }
+    }
+}
