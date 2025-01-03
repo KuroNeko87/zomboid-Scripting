@@ -2,86 +2,91 @@
     "name": "Zomboid Scripting Theme",
     "type": "dark",
     "colors": {
-        "editor.foreground": "#FFFFFF",
-        "editor.background": "#1E1E1E"
+        "editor.foreground": "#E0E0E0",
+        "editor.background": "#1E1E1E",
+        "editor.lineHighlightBackground": "#2A2A2A",
+        "editor.selectionBackground": "#264F78",
+        "editorCursor.foreground": "#A7A7A7",
+        "editorIndentGuide.background": "#3E3E3E"
     },
     "tokenColors": [
         {
             "scope": "keyword.control.parameter.zomboid",
             "settings": {
-                "foreground": "#800080",
+                "foreground": "#D19A66", // Light orange for keywords
                 "fontStyle": "bold"
             }
         },
         {
             "scope": "constant.language.boolean.zomboid",
             "settings": {
-                "foreground": "#FF0000"
+                "foreground": "#E06C75", // Red for booleans
+                "fontStyle": "bold"
             }
         },
         {
             "scope": "keyword.control.recipetag.zomboid",
             "settings": {
-                "foreground": "#FF4500",
-                "fontStyle": "bold"
+                "foreground": "#61AFEF", // Blue for recipe tags
+                "fontStyle": "italic"
             }
         },
         {
             "scope": "keyword.control.skill.zomboid",
             "settings": {
-                "foreground": "#008000"
+                "foreground": "#98C379", // Green for skills
+                "fontStyle": "bold"
             }
         },
         {
             "scope": "entity.name.function.timedAction.zomboid",
             "settings": {
-                "foreground": "#1E90FF"
+                "foreground": "#C678DD", // Purple for timed actions
+                "fontStyle": "italic"
             }
         },
         {
             "scope": "entity.name.function.scripttype.zomboid",
             "settings": {
-                "foreground": "#8B0000"
+                "foreground": "#E5C07B", // Golden yellow for script types
             }
         },
         {
             "scope": "entity.name.function.itemtag.zomboid",
             "settings": {
-                "foreground": "#2E8B57",
+                "foreground": "#56B6C2", // Cyan for item tags
                 "fontStyle": "italic"
             }
         },
         {
             "scope": "entity.name.function.itemflag.zomboid",
             "settings": {
-                "foreground": "#FF8C00",
-                "fontStyle": "italic"
+                "foreground": "#D19A66", // Light orange for item flags
             }
         },
         {
             "scope": "entity.name.function.itemmodifier.zomboid",
             "settings": {
-                "foreground": "#00CED1",
+                "foreground": "#E06C75", // Red for modifiers
                 "fontStyle": "bold"
             }
         },
         {
             "scope": "entity.name.function.itemmode.zomboid",
             "settings": {
-                "foreground": "#800000",
-                "fontStyle": "italic"
+                "foreground": "#61AFEF", // Blue for item modes
             }
         },
         {
             "scope": "entity.name.function.inputtype.zomboid",
             "settings": {
-                "foreground": "#4682B4"
+                "foreground": "#ABB2BF", // Neutral gray for input types
             }
         },
         {
             "scope": "punctuation.separator.zomboid",
             "settings": {
-                "foreground": "#FFFFFF"
+                "foreground": "#E0E0E0", // White for punctuation
             }
         }
     ]
