@@ -2,7 +2,7 @@
     "name": "zomboid-scripting",
     "displayName": "Zomboid Scripting",
     "description": "Syntax highlighting and error checking for Project Zomboid scripting.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "publisher": "n3tw0rk_n3k0",
     "engines": {
         "vscode": "^1.60.0"
@@ -35,7 +35,10 @@
     },
     "activationEvents": ["onLanguage:zomboid"],
     "main": "./src/extension.js",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE.txt",
+    "scripts": {
+    "watch": "tsc -watch -p ./"
+    },   
     "keywords": [
         "project zomboid",
         "scripting",
