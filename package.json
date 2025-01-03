@@ -2,13 +2,14 @@
     "name": "zomboid-scripting",
     "displayName": "Zomboid Scripting",
     "description": "Syntax highlighting and error checking for Project Zomboid scripting.",
-    "version": "1.0.0",
+    "version": "0.2.0",
     "publisher": "n3tw0rk_n3k0",
     "engines": {
         "vscode": "^1.60.0"
     },
     "categories": ["Programming Languages"],
-    "contributes": {
+    "icon": "images/icon.png",
+	"contributes": {
         "languages": [
             {
                 "id": "zomboid",
@@ -23,7 +24,14 @@
                 "scopeName": "source.zomboid",
                 "path": "./syntaxes/zomboid.tmLanguage.json"
             }
-        ]
+        ],
+        "themes": [
+            {
+                "label": "Zomboid Scripting Theme",
+                "uiTheme": "vs-dark",
+                "path": "./themes/zomboid-theme.json"
+            }
+        ]		
     },
     "activationEvents": ["onLanguage:zomboid"],
     "main": "./src/extension.js",
