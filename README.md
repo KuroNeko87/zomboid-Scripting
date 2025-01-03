@@ -6,7 +6,7 @@
 ## Features
 
 - **Syntax Highlighting**
-  - Supports all keywords, tags, and parameters for `.pz` scripting.
+  - Supports all keywords, tags, and parameters for `.txt` scripting.
   - Keywords, tags, and other script elements are color-coded for better readability.
 
 - **Error Checking**
@@ -33,13 +33,13 @@
 4. Navigate to the downloaded `.vsix` file and select it.
 
 ### **3. Activate the Extension**
-- Open a `.pz` script or any file associated with Project Zomboid modding to activate the extension.
+- Open a `.txt` script or any file associated with Project Zomboid modding to activate the extension.
 
 ---
 
 ## How to Use
 
-1. Open a `.pz` script file in Visual Studio Code.
+1. Open a `.txt` script file in Visual Studio Code.
 2. Syntax highlighting is applied automatically.
 3. Errors like missing commas or unmatched brackets will be highlighted.
 4. Use `Ctrl+Space` for auto-completion suggestions.
