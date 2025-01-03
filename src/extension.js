@@ -1,93 +1,121 @@
-import * as vscode from "vscode";
+const vscode = require("vscode");
 
-export function activate(context: vscode.ExtensionContext) {
-    vscode.languages.registerCodeActionsProvider("zomboid", {
-        provideCodeActions(document, range) {
-            const diagnostics: vscode.Diagnostic[] = [];
-            const text = document.getText();
+function activate(context) {
+    const diagnosticCollection = vscode.languages.createDiagnosticCollection("zomboid");
 
-            const lines = text.split("\n");
-            const bracketStack: string[] = [];
-            let inInputsOrOutputs = false;
+    context.subscriptions.push(
+        vscode.workspace.onDidOpenTextDocument(checkDocument),
+        vscode.workspace.onDidChangeTextDocument((event) => checkDocument(event.document)),
+        vscode.workspace.onDidSaveTextDocument(checkDocument)
+    );
 
-            lines.forEach((line, lineIndex) => {
-                const trimmedLine = line.trim();
+    function checkDocument(document) {
+        if (document.languageId !== "zomboid") return;
 
-                // Detect if we are inside `inputs {}` or `outputs {}`
-                if (trimmedLine.startsWith("inputs {") || trimmedLine.startsWith("outputs {")) {
+        const diagnostics = [];
+        const text = document.getText();
+        const lines = text.split("\n");
+
+        const blockStack = []; // Stack to track `{` and `}`
+        let currentBlockType = null; // Tracks "inputs" or "outputs"
+        let inInputsOrOutputs = false; // Determines if inside `inputs` or `outputs` block
+
+        lines.forEach((line, lineIndex) => {
+            const trimmedLine = line.trim();
+
+            // Check for block openings and closings
+            if (trimmedLine.endsWith("{")) {
+                const blockType = trimmedLine.split(" ")[0];
+                blockStack.push({ type: blockType, line: lineIndex });
+                if (blockType === "inputs" || blockType === "outputs") {
+                    currentBlockType = blockType;
                     inInputsOrOutputs = true;
                 }
-                if (trimmedLine === "}") {
-                    inInputsOrOutputs = false;
-                }
-
-                // Check for trailing commas in `inputs` and `outputs`
-                if (inInputsOrOutputs && trimmedLine.startsWith("item")) {
-                    if (!trimmedLine.endsWith(",")) {
-                        const diagnostic = new vscode.Diagnostic(
+            } else if (trimmedLine === "}") {
+                if (blockStack.length === 0) {
+                    // Unmatched closing brace
+                    diagnostics.push(
+                        new vscode.Diagnostic(
                             new vscode.Range(lineIndex, 0, lineIndex, trimmedLine.length),
-                            "Each item in 'inputs' and 'outputs' must end with a comma.",
-                            vscode.DiagnosticSeverity.Warning
-                        );
-                        diagnostics.push(diagnostic);
-                    }
-                }
-
-                // Check for extra commas
-                if (trimmedLine.includes(",,")) {
-                    const diagnostic = new vscode.Diagnostic(
-                        new vscode.Range(lineIndex, line.indexOf(",,"), lineIndex, line.indexOf(",,")),
-                        "Extra comma detected",
-                        vscode.DiagnosticSeverity.Warning
+                            "Unmatched '}' detected.",
+                            vscode.DiagnosticSeverity.Error
+                        )
                     );
-                    diagnostics.push(diagnostic);
-                }
-
-                // Check for unmatched brackets
-                for (let char of line) {
-                    if (char === "[" || char === "{") {
-                        bracketStack.push(char);
-                    } else if (char === "]") {
-                        if (bracketStack.pop() !== "[") {
-                            const diagnostic = new vscode.Diagnostic(
-                                new vscode.Range(lineIndex, line.indexOf(char), lineIndex, line.indexOf(char) + 1),
-                                "Unmatched ']' detected",
-                                vscode.DiagnosticSeverity.Error
-                            );
-                            diagnostics.push(diagnostic);
-                        }
-                    } else if (char === "}") {
-                        if (bracketStack.pop() !== "{") {
-                            const diagnostic = new vscode.Diagnostic(
-                                new vscode.Range(lineIndex, line.indexOf(char), lineIndex, line.indexOf(char) + 1),
-                                "Unmatched '}' detected",
-                                vscode.DiagnosticSeverity.Error
-                            );
-                            diagnostics.push(diagnostic);
-                        }
+                } else {
+                    const lastBlock = blockStack.pop();
+                    if (lastBlock.type === "inputs" || lastBlock.type === "outputs") {
+                        currentBlockType = null;
+                        inInputsOrOutputs = false;
                     }
                 }
+            }
+
+            // Check for missing trailing commas in parameters
+            const paramRegex = /^\s*\w+\s*=\s*[\w"']+/; // Matches `key = value`
+            if (paramRegex.test(trimmedLine) && !trimmedLine.endsWith(",")) {
+                diagnostics.push(
+                    new vscode.Diagnostic(
+                        new vscode.Range(lineIndex, 0, lineIndex, trimmedLine.length),
+                        "Missing trailing comma after parameter definition.",
+                        vscode.DiagnosticSeverity.Warning
+                    )
+                );
+            }
+
+            // Check for trailing commas in `inputs` and `outputs` blocks
+            if (inInputsOrOutputs && trimmedLine.startsWith("item")) {
+                if (!trimmedLine.endsWith(",")) {
+                    diagnostics.push(
+                        new vscode.Diagnostic(
+                            new vscode.Range(lineIndex, 0, lineIndex, trimmedLine.length),
+                            "Missing trailing comma in inputs/outputs block.",
+                            vscode.DiagnosticSeverity.Warning
+                        )
+                    );
+                }
+            }
+
+            // Check for invalid square bracket usage
+            if (currentBlockType === "inputs" && trimmedLine.startsWith("item")) {
+                if (!/\[.*?\]/.test(trimmedLine)) {
+                    diagnostics.push(
+                        new vscode.Diagnostic(
+                            new vscode.Range(lineIndex, 0, lineIndex, trimmedLine.length),
+                            "Items, tags, or flags in 'inputs' must be enclosed in square brackets.",
+                            vscode.DiagnosticSeverity.Error
+                        )
+                    );
+                }
+            } else if (currentBlockType === "outputs" && trimmedLine.startsWith("item")) {
+                if (/\[.*?\]/.test(trimmedLine)) {
+                    diagnostics.push(
+                        new vscode.Diagnostic(
+                            new vscode.Range(lineIndex, 0, lineIndex, trimmedLine.length),
+                            "Items in 'outputs' must not be enclosed in square brackets.",
+                            vscode.DiagnosticSeverity.Error
+                        )
+                    );
+                }
+            }
+        });
+
+        // Check for unclosed blocks at the end of the document
+        if (blockStack.length > 0) {
+            blockStack.forEach((block) => {
+                diagnostics.push(
+                    new vscode.Diagnostic(
+                        new vscode.Range(block.line, 0, block.line, lines[block.line].length),
+                        `Unclosed block '${block.type}' detected.`,
+                        vscode.DiagnosticSeverity.Error
+                    )
+                );
             });
-
-            // Check for unclosed brackets at the end of the document
-            if (bracketStack.includes("[")) {
-                const diagnostic = new vscode.Diagnostic(
-                    new vscode.Range(lines.length - 1, 0, lines.length - 1, lines[lines.length - 1].length),
-                    "Unmatched '[' detected",
-                    vscode.DiagnosticSeverity.Error
-                );
-                diagnostics.push(diagnostic);
-            }
-            if (bracketStack.includes("{")) {
-                const diagnostic = new vscode.Diagnostic(
-                    new vscode.Range(lines.length - 1, 0, lines.length - 1, lines[lines.length - 1].length),
-                    "Unmatched '{' detected",
-                    vscode.DiagnosticSeverity.Error
-                );
-                diagnostics.push(diagnostic);
-            }
-
-            return diagnostics;
         }
-    });
+
+        diagnosticCollection.set(document.uri, diagnostics);
+    }
+
+    context.subscriptions.push(diagnosticCollection);
 }
+
+exports.activate = activate;
