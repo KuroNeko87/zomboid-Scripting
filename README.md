@@ -22,7 +22,7 @@
   - Allows for easy integration of user-defined tags and elements.
 
 ## Examples
-![Example of the extension in action](https://imgur.com/a/J88YbZH)
+![Example of the extension in action](https://i.imgur.com/oA9CES4.png)
 
 ## Installation
 
