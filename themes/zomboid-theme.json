@@ -1,0 +1,88 @@
+{
+    "name": "Zomboid Scripting Theme",
+    "type": "dark",
+    "colors": {
+        "editor.foreground": "#FFFFFF",
+        "editor.background": "#1E1E1E"
+    },
+    "tokenColors": [
+        {
+            "scope": "keyword.control.parameter.zomboid",
+            "settings": {
+                "foreground": "#800080",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "constant.language.boolean.zomboid",
+            "settings": {
+                "foreground": "#FF0000"
+            }
+        },
+        {
+            "scope": "keyword.control.recipetag.zomboid",
+            "settings": {
+                "foreground": "#FF4500",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "keyword.control.skill.zomboid",
+            "settings": {
+                "foreground": "#008000"
+            }
+        },
+        {
+            "scope": "entity.name.function.timedAction.zomboid",
+            "settings": {
+                "foreground": "#1E90FF"
+            }
+        },
+        {
+            "scope": "entity.name.function.scripttype.zomboid",
+            "settings": {
+                "foreground": "#8B0000"
+            }
+        },
+        {
+            "scope": "entity.name.function.itemtag.zomboid",
+            "settings": {
+                "foreground": "#2E8B57",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "entity.name.function.itemflag.zomboid",
+            "settings": {
+                "foreground": "#FF8C00",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "entity.name.function.itemmodifier.zomboid",
+            "settings": {
+                "foreground": "#00CED1",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "entity.name.function.itemmode.zomboid",
+            "settings": {
+                "foreground": "#800000",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "entity.name.function.inputtype.zomboid",
+            "settings": {
+                "foreground": "#4682B4"
+            }
+        },
+        {
+            "scope": "punctuation.separator.zomboid",
+            "settings": {
+                "foreground": "#FFFFFF"
+            }
+        }
+    ]
+}
